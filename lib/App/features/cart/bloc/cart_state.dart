@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'cart_bloc.dart';
 
 abstract class CartState {}
@@ -13,3 +12,5 @@ class CartSuccessState extends CartState {
     required this.cartItems,
   });
 }
+
+class CartItemRemovedState extends CartState{}

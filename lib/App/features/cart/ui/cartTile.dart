@@ -53,7 +53,11 @@ class CartTile extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.favorite)),
+                      onPressed: () {
+                        cartBloc.add(
+                            CartRemoveCartEvent(clickedFish: fishDataModel));
+                      },
+                      icon: const Icon(Icons.favorite)),
                   IconButton(
                       onPressed: () {}, icon: const Icon(Icons.shopping_bag)),
                 ],
