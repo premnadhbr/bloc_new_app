@@ -1,12 +1,14 @@
-import 'package:flutter/cupertino.dart';
-import 'package:bloc_new_app/App/features/home/models/home_fish_model.dart';
 import 'package:flutter/material.dart';
+import 'package:bloc_new_app/App/features/home/bloc/home_bloc.dart';
+import 'package:bloc_new_app/App/features/home/models/home_fish_model.dart';
 
 class ProductTile extends StatelessWidget {
   final FishDataModel fishDataModel;
+  final HomeBloc homeBloc;
   const ProductTile({
     Key? key,
     required this.fishDataModel,
+    required this.homeBloc,
   }) : super(key: key);
 
   @override
@@ -41,6 +43,7 @@ class ProductTile extends StatelessWidget {
                   const TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
           const SizedBox(height: 10),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 '\$ ' + fishDataModel.price.toString(),
@@ -50,10 +53,16 @@ class ProductTile extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        homeBloc.add(HomeproductWishlistButtonCLickedEvent(
+                            clickedfish: fishDataModel));
+                      },
                       icon: const Icon(Icons.favorite_border_outlined)),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        homeBloc.add(HomeproductCartButtonCLickedEvent(
+                            clickedfish: fishDataModel));
+                      },
                       icon: const Icon(Icons.shopping_bag_outlined)),
                 ],
               )
